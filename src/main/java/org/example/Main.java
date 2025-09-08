@@ -2,6 +2,9 @@ package org.example;
 
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.*;
+import org.example.utils.MfaUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -9,8 +12,14 @@ import com.microsoft.playwright.options.*;
  * @created 26/08/2025
  */
 public class Main {
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+
     public static void main(String[] args) {
         try (final Playwright playwright = Playwright.create()) {
+
+            final int code = MfaUtil.generateMfaCode();
+            logger.info("{} MFA CODE !!!", code);
+
             final Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
                     .setHeadless(false)
                     .setSlowMo(1000));

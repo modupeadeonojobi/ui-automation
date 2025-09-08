@@ -39,3 +39,5 @@ build/
 
 meine/
 tasks/
+
+*.env
